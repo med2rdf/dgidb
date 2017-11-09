@@ -26,5 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
 
   spec.add_dependency 'activerecord', '~> 5.1'
+  spec.add_dependency 'linkeddata', '~> 2.2', '>= 2.2.3'
   spec.add_dependency 'pg', '~> 0.21.0'
 end
