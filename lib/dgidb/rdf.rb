@@ -1,7 +1,7 @@
-require "dgidb/rdf/version"
+require 'dgidb/rdf/version'
 
 module Dgidb
-  module Rdf
+  module RDF
     # Your code goes here...
   end
 end
