@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'activerecord', '~> 5.1'
   spec.add_dependency 'linkeddata', '~> 2.2', '>= 2.2.3'
   spec.add_dependency 'pg', '~> 0.21.0'
+  spec.add_dependency 'ruby-progressbar', '~> 1.9'
 end
