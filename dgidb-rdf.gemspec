@@ -4,7 +4,7 @@ require 'dgidb/rdf/version'
 
 Gem::Specification.new do |spec|
   spec.name    = 'dgidb-rdf'
-  spec.version = Dgidb::Rdf::VERSION
+  spec.version = Dgidb::RDF::VERSION
   spec.authors = ['Daisuke Satoh']
   spec.email   = ['daisuke.satoh@level-five.jp']
 
