@@ -1,0 +1,13 @@
+defaults: &defaults
+  encoding: unicode
+  adapter:  postgresql
+  host:     localhost
+  database: dgidb
+  port:     5432
+  pool:     10
+  username:
+  password:
+
+test:
+  <<: *defaults
+  database: dgidb_test
