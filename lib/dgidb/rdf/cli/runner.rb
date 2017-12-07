@@ -1,3 +1,5 @@
+require 'active_support'
+require 'active_support/core_ext/object/inclusion'
 require 'active_support/core_ext/string/strip'
 require 'active_support/inflector'
 
@@ -33,7 +35,7 @@ module Dgidb
 
         def commands
           klasses = Dgidb::RDF::CLI.constants.reject do |c|
-            c == :Runner
+            c.in? %i[Runner PROG_NAME]
           end
           klasses.map { |k| k.to_s.underscore }
         end
