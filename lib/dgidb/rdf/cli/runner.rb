@@ -40,18 +40,18 @@ module Dgidb
 
         def help
           <<-USAGE.strip_heredoc % commands.map { |c| "    #{c}" }.join("\n")
-        Usage: #{PROG_NAME} [command] [options] [arguments]
+            Usage: #{PROG_NAME} [command] [options] [arguments]
 
-        RDF Converter for DGIdb
+            RDF Converter for DGIdb
 
-        Commands:
-        %s
+            Commands:
+            %s
 
-        Options:
-            -h, --help                       show help
-            -v, --version                    print version
+            Options:
+                -h, --help                       show help
+                -v, --version                    print version
 
-        Run '#{PROG_NAME} COMMAND --help' for more information on a command
+            Run '#{PROG_NAME} COMMAND --help' for more information on a command
 
           USAGE
         end
