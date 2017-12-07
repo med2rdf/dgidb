@@ -1,4 +1,5 @@
 require 'active_record'
+require 'linkeddata'
 
 module Dgidb
   module RDF
