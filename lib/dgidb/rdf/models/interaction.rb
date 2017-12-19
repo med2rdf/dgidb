@@ -22,7 +22,7 @@ module Dgidb
           self.publications.pluck(:pmid).uniq
         end
 
-        def as_rdf
+        def triples
           triples = []
 
           subject = ::RDF::URI.new(Constant::PREFIXES[:dgidb_interaction] + self[:id])

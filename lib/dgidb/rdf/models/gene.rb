@@ -14,7 +14,7 @@ module Dgidb
 
         PREFIX_KEYS = %i[rdf rdfs dcterms skos xsd dgio dgidb_gene ncbi_gene].freeze
 
-        def as_rdf
+        def triples
           triples = []
 
           subject = ::RDF::URI.new(Constant::PREFIXES[:dgidb_gene] + self[:id])

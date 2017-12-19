@@ -103,8 +103,8 @@ module Dgidb
 
       def body(model)
         writer.buffer(prefixes: prefixes) do |writer|
-          break unless model.respond_to?(:as_rdf)
-          model.as_rdf.each do |triple|
+          break unless model.respond_to?(:triples)
+          model.triples.each do |triple|
             writer << triple
           end
         end
