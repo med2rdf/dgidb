@@ -1,11 +1,7 @@
 require 'spec_helper'
 
-RSpec.describe Dgidb::Rdf do
-  it "has a version number" do
-    expect(Dgidb::Rdf::VERSION).not_to be nil
-  end
-
-  it "does something useful" do
-    expect(false).to eq(true)
+RSpec.describe Dgidb::RDF do
+  it 'has a version number' do
+    expect(Dgidb::RDF::VERSION).not_to be nil
   end
 end
