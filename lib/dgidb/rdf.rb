@@ -45,7 +45,6 @@ module Dgidb
       autoload :SourceType, 'dgidb/rdf/models/source_type'
     end
 
-    autoload :Downloader, 'dgidb/rdf/downloader'
     autoload :Writer, 'dgidb/rdf/writer'
   end
 end
