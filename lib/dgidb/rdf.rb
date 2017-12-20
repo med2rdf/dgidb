@@ -1,5 +1,8 @@
 require 'dgidb/rdf/version'
 
+autoload :TurtleStreamWriter, 'dgidb/utils/turtle_stream_writer'
+autoload :Downloader, 'dgidb/utils/downloader'
+
 module Dgidb
   module RDF
 
@@ -45,6 +48,5 @@ module Dgidb
       autoload :SourceType, 'dgidb/rdf/models/source_type'
     end
 
-    autoload :Writer, 'dgidb/rdf/writer'
   end
 end
