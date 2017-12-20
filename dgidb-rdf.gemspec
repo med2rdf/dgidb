@@ -27,7 +27,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec', '~> 3.0'
 
   spec.add_dependency 'activerecord', '~> 5.1'
-  spec.add_dependency 'linkeddata', '~> 2.2', '>= 2.2.3'
   spec.add_dependency 'pg', '~> 0.21.0'
+  spec.add_dependency 'rdf-turtle', '~> 2.2', '>= 2.2.2'
+  spec.add_dependency 'rdf-vocab', '~> 2.2', '>= 2.2.9'
   spec.add_dependency 'ruby-progressbar', '~> 1.9'
 end

@@ -1,5 +1,6 @@
 require 'active_record'
-require 'linkeddata'
+require 'rdf'
+require 'rdf/vocab'
 
 module Dgidb
   module RDF

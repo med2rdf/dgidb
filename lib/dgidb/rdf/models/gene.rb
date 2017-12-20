@@ -12,8 +12,6 @@ module Dgidb
                                 join_table: 'gene_categories_genes',
                                 class_name: 'GeneClaimCategory'
 
-        PREFIX_KEYS = %i[rdf rdfs dcterms skos xsd dgio dgidb_gene ncbi_gene].freeze
-
         def triples
           triples = []
 

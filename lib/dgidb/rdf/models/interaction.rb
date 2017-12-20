@@ -12,8 +12,6 @@ module Dgidb
         has_and_belongs_to_many :publications
         has_and_belongs_to_many :sources
 
-        PREFIX_KEYS = %i[rdf rdfs dcterms xsd dgio dgidb_interaction dgidb_drug dgidb_gene pubmed].freeze
-
         def type_names
           self.interaction_types.pluck(:type).uniq
         end

@@ -10,8 +10,6 @@ module Dgidb
         has_many :drug_attributes
         belongs_to :chembl_molecule
 
-        PREFIX_KEYS = %i[rdf rdfs dcterms xsd dgio dgidb_drug chembl_molecule].freeze
-
         def triples
           triples = []
 
