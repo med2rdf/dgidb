@@ -5,7 +5,7 @@ namespace :db do
 
   task :environment do
     @yaml   = File.join(Dgidb::RDF::ROOT_DIR, 'conf', 'database.yaml')
-    @config = YAML.load_file(@yaml)[:defaults].symbolize_keys
+    @config = YAML.load_file(@yaml)['defaults'].symbolize_keys
 
     @admin_config = { database:           'postgres',
                       schema_search_path: 'public' }.freeze
