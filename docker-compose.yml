@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  ruby:
+    image: ruby:2.4
+    environment:
+      RUBYOPT: -EUTF-8
+    volumes:
+      - .:/var/lib/dgidb-rdf
+    links:
+      - "db:database"
+    command: sh /var/lib/dgidb-rdf/docker-entrypoint.sh
+  db:
+    image: postgres:9.6
+    volumes:
+      - ./data:/var/data
