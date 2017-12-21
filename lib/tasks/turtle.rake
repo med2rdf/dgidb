@@ -31,7 +31,7 @@ namespace :turtle do
         bar.total = Dgidb::RDF::Models::Interaction.count
         file      = File.join(dest_dir, 'interaction.ttl')
         TurtleStreamWriter.open(file, 'w', opt) do |writer|
-          Dgidb::RDF::Models::Interaction.limit(10).find_each do |interaction|
+          Dgidb::RDF::Models::Interaction.find_each do |interaction|
             writer << interaction
             bar.increment
           end
@@ -57,7 +57,7 @@ namespace :turtle do
         bar.total = Dgidb::RDF::Models::Drug.count
         file      = File.join(dest_dir, 'drug.ttl')
         TurtleStreamWriter.open(file, 'w', opt) do |writer|
-          Dgidb::RDF::Models::Drug.limit(10).find_each do |drug|
+          Dgidb::RDF::Models::Drug.find_each do |drug|
             writer << drug
             bar.increment
           end
@@ -84,7 +84,7 @@ namespace :turtle do
         bar.total = Dgidb::RDF::Models::Gene.count
         file      = File.join(dest_dir, 'gene.ttl')
         TurtleStreamWriter.open(file, 'w', opt) do |writer|
-          Dgidb::RDF::Models::Gene.limit(10).find_each do |gene|
+          Dgidb::RDF::Models::Gene.find_each do |gene|
             writer << gene
             bar.increment
           end
