@@ -1,24 +1,14 @@
-require 'dgidb/rdf'
-require 'rdf'
-require 'rdf/vocab'
-require 'ruby-progressbar'
-
 namespace :turtle do
   namespace :generate do
-    # initialization
+    require 'dgidb/rdf'
+    require 'dgidb/utils/progress_bar_wrapper'
+    require 'rdf'
+    require 'rdf/vocab'
+    require 'ruby-progressbar'
+
+    include ProgressBarWrapper
+
     task :environment do
-    end
-
-    def progress_bar(**options)
-      opt = { format: '|%B| %J%% %a (%E)' }.merge(options)
-
-      opt[:output] = STDOUT.tty? ? STDOUT : File.open('/dev/null', 'w')
-
-      progress_bar = ProgressBar.create(opt)
-
-      yield progress_bar
-    ensure
-      progress_bar.finish
     end
 
     desc <<-DESC.strip_heredoc
