@@ -1,8 +1,11 @@
 require 'net/ftp'
 require 'open-uri'
 require 'ruby-progressbar'
+require 'dgidb/utils/progress_bar_wrapper'
 
 class Downloader
+
+  include ProgressBarWrapper
 
   def initialize(uri, dest_dir)
     raise(ArgumentError, "#{uri.class} is not a URI.") unless uri.is_a?(URI)
@@ -28,44 +31,38 @@ class Downloader
 
   private
 
-  def progress_bar
-    @progress_bar ||= begin
-      pgbar        = ProgressBar.create(format: '|%B| %J%% %a (%E)')
-      pgbar.output = File.open('/dev/null', 'w') unless STDOUT.tty?
-      pgbar
-    end
-  end
-
   def download_http(uri, dir)
-    f = lambda do |content_length|
-      progress_bar.total = content_length if content_length
-    end
-    g = lambda do |transferred_bytes|
-      progress_bar.progress = transferred_bytes
-    end
+    progress_bar do |bar|
+      f = lambda do |content_length|
+        bar.total = content_length if content_length
+      end
+      g = lambda do |transferred_bytes|
+        if bar.total >= transferred_bytes
+          bar.progress = transferred_bytes
+        end
+      end
 
-    file_name = uri.path.split('/').last
-    open(uri, content_length_proc: f, progress_proc: g) do |data|
-      open(File.join(dir, file_name), 'w') do |file|
-        file.write(data.read)
+      file_name = uri.path.split('/').last
+      open(uri, content_length_proc: f, progress_proc: g) do |data|
+        open(File.join(dir, file_name), 'w') do |file|
+          file.write(data.read)
+        end
       end
     end
-
-    progress_bar.finish
   end
 
   def download_ftp(uri, dir)
     file_name = uri.path.split('/').last
 
-    Net::FTP.open(uri.host) do |ftp|
-      ftp.login('anonymous', nil, nil)
-      progress_bar.total = ftp.size(uri.path)
+    progress_bar do |bar|
+      Net::FTP.open(uri.host) do |ftp|
+        ftp.login('anonymous', nil, nil)
+        bar.total = ftp.size(uri.path)
 
-      ftp.get(uri.path, File.join(dir, file_name)) do |data|
-        progress_bar.progress += data.size
+        ftp.get(uri.path, File.join(dir, file_name)) do |data|
+          bar.progress += data.size
+        end
       end
     end
-
-    progress_bar.finish
   end
 end
