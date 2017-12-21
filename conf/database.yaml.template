@@ -1,11 +1,11 @@
 defaults: &defaults
   encoding: unicode
   adapter:  postgresql
-  host:     localhost
+  host:     database
   database: dgidb
   port:     5432
   pool:     10
-  username:
+  username: postgres
   password:
 
 test:
