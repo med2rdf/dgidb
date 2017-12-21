@@ -49,9 +49,6 @@ module Dgidb
             op.banner = "Convert DGIdb data to RDF\n"
 
             op.separator("\nOptions:")
-            op.on('-i', '--input DIRECTORY', 'the directory where input data were stored') do |v|
-              @options[:input] = v
-            end
             op.on('-o', '--output DIRECTORY', 'the directory where converted data will be stored') do |v|
               @options[:output] = v
             end
