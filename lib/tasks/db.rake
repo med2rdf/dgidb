@@ -24,6 +24,8 @@ namespace :db do
   task drop: [:environment] do
     ActiveRecord::Base.establish_connection(@config.merge(@admin_config))
     ActiveRecord::Base.connection.drop_database(@config[:database])
+
+    FileUtils.rm(File.join(Dgidb::RDF::ROOT_DIR, 'db', 'schema.rb'), force: true)
   end
 
   desc <<-DESC.strip_heredoc
