@@ -14,7 +14,7 @@ namespace :turtle do
     desc <<-DESC.strip_heredoc
       generate interaction.ttl
     DESC
-    task :interaction, %i[dest_dir] => [:environment] do |_, args|
+    task :interaction, %i[output_dir] => [:environment] do |_, args|
       opt = { base:     Dgidb::RDF::Constant::PREFIXES[:dgidb_interaction],
               prefixes: { rdf:        RDF::RDFV.to_s,
                           rdfs:       RDF::RDFS.to_s,
@@ -25,11 +25,11 @@ namespace :turtle do
                           dgidb_gene: Dgidb::RDF::Constant::PREFIXES[:dgidb_gene],
                           pubmed:     Dgidb::RDF::Constant::PREFIXES[:pubmed] } }
 
-      dest_dir = args[:dest_dir] || './'
+      output_dir = args[:output_dir] || ENV['PWD']
 
       progress_bar do |bar|
         bar.total = Dgidb::RDF::Models::Interaction.count
-        file      = File.join(dest_dir, 'interaction.ttl')
+        file      = File.join(output_dir, 'interaction.ttl')
         TurtleStreamWriter.open(file, 'w', opt) do |writer|
           Dgidb::RDF::Models::Interaction.find_each do |interaction|
             writer << interaction
@@ -42,7 +42,7 @@ namespace :turtle do
     desc <<-DESC.strip_heredoc
       generate drug.ttl
     DESC
-    task :drug, %i[dest_dir] => [:environment] do |_, args|
+    task :drug, %i[output_dir] => [:environment] do |_, args|
       opt = { base:     Dgidb::RDF::Constant::PREFIXES[:dgidb_drug],
               prefixes: { rdf:             RDF::RDFV.to_s,
                           rdfs:            RDF::RDFS.to_s,
@@ -51,11 +51,11 @@ namespace :turtle do
                           dgio:            Dgidb::RDF::DGIO.to_s,
                           chembl_molecule: Dgidb::RDF::Constant::PREFIXES[:chembl_molecule] } }
 
-      dest_dir = args[:dest_dir] || './'
+      output_dir = args[:output_dir] || ENV['PWD']
 
       progress_bar do |bar|
         bar.total = Dgidb::RDF::Models::Drug.count
-        file      = File.join(dest_dir, 'drug.ttl')
+        file      = File.join(output_dir, 'drug.ttl')
         TurtleStreamWriter.open(file, 'w', opt) do |writer|
           Dgidb::RDF::Models::Drug.find_each do |drug|
             writer << drug
@@ -68,7 +68,7 @@ namespace :turtle do
     desc <<-DESC.strip_heredoc
       generate gene.ttl
     DESC
-    task :gene, %i[dest_dir] => [:environment] do |_, args|
+    task :gene, %i[output_dir] => [:environment] do |_, args|
       opt = { base:     Dgidb::RDF::Constant::PREFIXES[:dgidb_gene],
               prefixes: { rdf:       RDF::RDFV.to_s,
                           rdfs:      RDF::RDFS.to_s,
@@ -78,11 +78,11 @@ namespace :turtle do
                           dgio:      Dgidb::RDF::DGIO.to_s,
                           ncbi_gene: Dgidb::RDF::Constant::PREFIXES[:ncbi_gene] } }
 
-      dest_dir = args[:dest_dir] || './'
+      output_dir = args[:output_dir] || ENV['PWD']
 
       progress_bar do |bar|
         bar.total = Dgidb::RDF::Models::Gene.count
-        file      = File.join(dest_dir, 'gene.ttl')
+        file      = File.join(output_dir, 'gene.ttl')
         TurtleStreamWriter.open(file, 'w', opt) do |writer|
           Dgidb::RDF::Models::Gene.find_each do |gene|
             writer << gene
@@ -95,6 +95,6 @@ namespace :turtle do
     desc <<-DESC.strip_heredoc
       run all generate tasks
     DESC
-    task :all, %i[dest_dir] => %i[environment interaction drug gene]
+    task :all, %i[output_dir] => %i[environment interaction drug gene]
   end
 end
