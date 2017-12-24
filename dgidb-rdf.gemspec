@@ -13,8 +13,9 @@ Gem::Specification.new do |spec|
   spec.homepage    = "TODO: Put your gem's website or public repo URL here."
   spec.license     = 'MIT'
 
-  spec.files  = Dir['lib/**/*.rb'] + Dir['bin/*'] + Dir['exe/*']
-  spec.files += Dir['[A-Z]*'] + Dir['test/**/*']
+  spec.files  = Dir['conf/*'] + Dir['db/*'] + Dir['exe/*']
+  spec.files += Dir['lib/**/*.rb'] + Dir['lib/**/*.rake']
+  spec.files += Dir['[A-Z]*']
   spec.files.reject! { |fn| fn.include? "CVS" }
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
