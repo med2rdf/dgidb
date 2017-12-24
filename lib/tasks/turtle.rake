@@ -27,6 +27,7 @@ namespace :turtle do
 
       output_dir = args[:output_dir] || ENV['PWD']
 
+      puts 'generating interaction.ttl...'
       progress_bar do |bar|
         bar.total = Dgidb::RDF::Models::Interaction.count
         file      = File.join(output_dir, 'interaction.ttl')
@@ -53,6 +54,7 @@ namespace :turtle do
 
       output_dir = args[:output_dir] || ENV['PWD']
 
+      puts 'generating drug.ttl...'
       progress_bar do |bar|
         bar.total = Dgidb::RDF::Models::Drug.count
         file      = File.join(output_dir, 'drug.ttl')
@@ -80,6 +82,7 @@ namespace :turtle do
 
       output_dir = args[:output_dir] || ENV['PWD']
 
+      puts 'generating gene.ttl...'
       progress_bar do |bar|
         bar.total = Dgidb::RDF::Models::Gene.count
         file      = File.join(output_dir, 'gene.ttl')
