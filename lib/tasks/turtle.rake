@@ -27,6 +27,18 @@ namespace :turtle do
 
       Rake::Task['db:seed'].invoke if models.map(&:count).map(&:zero?).all?
     end
+
+    desc <<-DESC.strip_heredoc
+      generate dgio.ttl
+    DESC
+    task :ontology, %i[output_dir] => [:environment] do |_, args|
+      output_dir = args[:output_dir] || ENV['PWD']
+
+      puts 'generating dgio.ttl...'
+      file = File.join(output_dir, 'dgio.ttl')
+      File.open(file, 'w') do |f|
+        f.write Dgidb::RDF::DGIO.to_ttl
+      end
     end
 
     desc <<-DESC.strip_heredoc
@@ -116,6 +128,6 @@ namespace :turtle do
     desc <<-DESC.strip_heredoc
       run all generate tasks
     DESC
-    task :all, %i[output_dir] => %i[environment interaction drug gene]
+    task :all, %i[output_dir] => %i[ontology environment interaction drug gene]
   end
 end
