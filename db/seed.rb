@@ -36,7 +36,7 @@ class Seed
 
   def seed
     puts 'Seeding data...'
-    con = ActiveRecord::Base.connection.raw_connection
+    con = Dgidb::RDF::Models::Base.connection.raw_connection
     progress_bar do |bar|
       bar.total = count_lines
 
