@@ -1,18 +1,17 @@
 require 'rdf'
+require 'rdf/vocab'
 
 module Dgidb
   module RDF
     class DGIO < ::RDF::StrictVocabulary('http://purl.jp/bio/10/dgidb/')
 
       # Ontology definition
-      ontology 'http://purl.jp/bio/10/dgidb/'.freeze,
-               type:               ::RDF::OWL.Ontology,
-               :'dc11:title'       => 'DGIdb Ontology',
-               :'dc11:description' => 'DGIdb Ontology describes classes and properties which is used in DGIdb-RDF',
-               :'owl:imports'      => %w[http://purl.org/dc/terms/
-                                         http://semanticscience.org/ontology/sio.owl
-                                         http://www.w3.org/2004/02/skos/core
-                                         http://xmlns.com/foaf/0.1/].freeze
+      ontology to_uri.freeze,
+               type:             ::RDF::OWL.Ontology,
+               :'dc:title'       => 'DGIdb Ontology',
+               :'dc:description' => 'DGIdb Ontology describes classes and properties which is used in DGIdb RDF',
+               :'owl:imports'    => [::RDF::Vocab::DC.to_s,
+                                     ::RDF::Vocab::SKOS.to_s].freeze
 
       # Class definitions
       term :DGIdb,
@@ -43,13 +42,13 @@ module Dgidb
 
       property :gene,
                type:   ::RDF::OWL.ObjectProperty,
-               label: 'gene'.freeze,
+               label:  'gene'.freeze,
                domain: DGIO.Interaction,
                range:  DGIO.Gene
 
       property :interactionType,
                type:   ::RDF::OWL.DatatypeProperty,
-               label: 'interaction type'.freeze,
+               label:  'interaction type'.freeze,
                domain: DGIO.Interaction,
                range:  ::RDF::XSD.string
 
