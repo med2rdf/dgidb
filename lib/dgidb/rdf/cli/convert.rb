@@ -6,8 +6,7 @@ module Dgidb
       class Convert
 
         DEFAULT_OPTIONS = {
-          input:  nil,
-          output: nil,
+          output_dir: ENV['DATA_DIR'] || ENV['PWD'],
           help:   false
         }.freeze
 
@@ -26,7 +25,7 @@ module Dgidb
           validate_options
 
           load File.join(ROOT_DIR, 'Rakefile')
-          Rake::Task['turtle:generate:all'].invoke(@options[:output])
+          Rake::Task['turtle:generate:all'].invoke(@options[:output_dir])
         rescue OptionParser::InvalidOption => e
           STDERR.puts e.message
           STDERR.puts
@@ -50,7 +49,7 @@ module Dgidb
 
             op.separator("\nOptions:")
             op.on('-o', '--output DIRECTORY', 'the directory where converted data will be stored') do |v|
-              @options[:output] = v
+              @options[:output_dir] = v
             end
             op.on('-h', '--help', 'show help') do
               @options[:help] = true
@@ -60,13 +59,11 @@ module Dgidb
         end
 
         def validate_options
-          @options[:output] ||= './'
+          output_dir = @options[:output_dir]
 
-          output = @options[:output]
-
-          raise("Directory not found: #{output}") unless File.exist?(output)
-          raise("#{output} is not a directory.") unless File.directory?(output)
-          raise("#{output} is not writable.") unless File.writable?(output)
+          raise("Directory not found: #{output_dir}") unless File.exist?(output_dir)
+          raise("#{output_dir} is not a directory.") unless File.directory?(output_dir)
+          raise("#{output_dir} is not writable.") unless File.writable?(output_dir)
         end
       end
     end
