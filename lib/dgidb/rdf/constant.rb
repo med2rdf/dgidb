@@ -2,7 +2,6 @@ module Dgidb
   module RDF
     module Constant
       DATA_SQL_URL = 'http://dgidb.org/data/data.sql'.freeze
-      STRUCTURE_SQL_URL = 'https://raw.githubusercontent.com/griffithlab/dgi-db/master/db/structure.sql'.freeze
 
       PREFIXES = {
         # identifiers.org

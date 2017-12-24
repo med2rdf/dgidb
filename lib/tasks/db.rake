@@ -38,18 +38,11 @@ namespace :db do
     Migrate the database
   DESC
   task migrate: [:environment] do
-    path = File.join(Dgidb::RDF::ROOT_DIR, 'db')
-
-    src_file = File.join(path, 'structure.sql')
-    unless File.exist?(src_file)
-      url = URI(ENV['structure_sql_url'] || Dgidb::RDF::Constant::STRUCTURE_SQL_URL)
-      Downloader.new(url, path).download
-    end
-    raise("#{src_file} is not readable.") unless File.readable?(src_file)
+    src_file = File.join(Dgidb::RDF::ROOT_DIR, 'db', 'structure.sql')
 
     ActiveRecord::Base.establish_connection(@config)
-    # ActiveRecord::Migrator.migrate(path)
-    sql = IO.read(src_file).sub(/^(SET idle_in_transaction_session_timeout)/, '-- \1')
+    sql = IO.read(src_file)
+            .sub(/^(SET idle_in_transaction_session_timeout)/, '-- \1')
     ActiveRecord::Base.connection.execute(sql)
 
     Rake::Task['db:schema'].invoke
