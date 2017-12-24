@@ -9,6 +9,24 @@ namespace :turtle do
     include ProgressBarWrapper
 
     task :environment do
+      retried = false
+      begin
+        Dgidb::RDF::Models::Base.connection
+      rescue ActiveRecord::NoDatabaseError
+        raise('Failed to create database.') if retried
+        Rake::Task['db:create'].invoke
+        retried = true
+        retry
+      end
+
+      Rake::Task['db:migrate'].invoke unless File.exist?(File.join(Dgidb::RDF::ROOT_DIR, 'db', 'schema.rb'))
+
+      models = [Dgidb::RDF::Models::Drug,
+                Dgidb::RDF::Models::Gene,
+                Dgidb::RDF::Models::Interaction]
+
+      Rake::Task['db:seed'].invoke if models.map(&:count).map(&:zero?).all?
+    end
     end
 
     desc <<-DESC.strip_heredoc
