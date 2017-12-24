@@ -24,8 +24,9 @@ module Dgidb
 
           validate_options
 
-          load File.join(ROOT_DIR, 'Rakefile')
-          Rake::Task['turtle:generate:all'].invoke(@options[:output_dir])
+          Models::Base.seed_if_needed
+
+          Turtle::Generator.new(@options[:output_dir]).all
         rescue OptionParser::InvalidOption => e
           STDERR.puts e.message
           STDERR.puts

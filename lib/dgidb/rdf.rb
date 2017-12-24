@@ -48,5 +48,8 @@ module Dgidb
       autoload :SourceType, 'dgidb/rdf/models/source_type'
     end
 
+    module Turtle
+      autoload :Generator, 'dgidb/rdf/turtle/generator'
+    end
   end
 end
