@@ -1,8 +1,7 @@
 namespace :db do
   require 'active_record'
   require 'active_support/core_ext/hash/keys'
-  require 'dgidb/rdf/constant'
-  require 'dgidb/utils/downloader'
+  require 'dgidb/rdf'
   require 'dgidb/utils/progress_bar_wrapper'
   require 'yaml'
 
