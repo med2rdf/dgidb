@@ -1,15 +1,16 @@
 FROM ruby:2.4
 
 ENV RELEASE v0.1.0-rc1
-ENV DGIDB_SRC=/usr/local/src/dgidb
 
 ENV LANG en_US.utf8
 ENV RUBYOPT -EUTF-8
-ENV PATH $PATH:/usr/lib/postgresql/"$PG_VERSION"/bin/
-ENV PGDATA /var/lib/postgresql/data
 
 ENV GOSU_VERSION 1.10
 ENV PG_VERSION 9.6
+
+ENV DGIDB_SRC /usr/local/src/dgidb
+ENV PGDATA /var/lib/postgresql/data
+ENV PATH $PATH:/usr/lib/postgresql/"$PG_VERSION"/bin/
 
 RUN groupadd -r postgres --gid=999 && \
     useradd -r -g postgres --uid=999 postgres
