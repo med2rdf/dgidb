@@ -75,4 +75,9 @@ namespace :db do
     Reset the database
   DESC
   task reset: %i[environment drop create migrate]
+
+  desc <<-DESC.strip_heredoc
+    Setup the database
+  DESC
+  task setup: %i[environment create migrate seed]
 end

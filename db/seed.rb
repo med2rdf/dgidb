@@ -46,8 +46,16 @@ class Seed
             next unless line =~ /^COPY /
             con.copy_data(line) do
               while (data = f.gets)
-                break if data =~ /\\\./
-                con.put_copy_data data
+                error_retry = false
+                begin
+                  break if data =~ /\\\./
+                  con.put_copy_data data
+                rescue ArgumentError => e
+                  raise e if error_retry
+                  data.scrub! { |bytes| "<#{bytes.unpack('H*')[0]}>" }
+                  error_retry = true
+                  retry
+                end
                 bar.increment
               end
             end
