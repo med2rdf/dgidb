@@ -6,11 +6,11 @@ Gem::Specification.new do |spec|
   spec.name    = 'dgidb-rdf'
   spec.version = Dgidb::RDF::VERSION
   spec.authors = ['Daisuke Satoh']
-  spec.email   = ['daisuke.satoh@level-five.jp']
+  spec.email   = ['med2rdf@googlegroups.com']
 
   spec.description = 'RDF Converter for DGIdb'
   spec.summary     = spec.description
-  spec.homepage    = "TODO: Put your gem's website or public repo URL here."
+  spec.homepage    = 'http://med2rdf.org'
   spec.license     = 'MIT'
 
   spec.files  = Dir['conf/*'] + Dir['db/*'] + Dir['exe/*']
