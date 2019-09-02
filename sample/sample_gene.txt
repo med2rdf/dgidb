@@ -1,0 +1,14 @@
+@base <http://identifiers.org/dgidb/gene/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dgio: <http://purl.jp/bio/10/dgidb/> .
+@prefix ncbi_gene: <http://identifiers.org/ncbigene/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<4895909e-228d-4f75-bd19-f53cff102c53> a dgio:Gene;
+   rdfs:label "ABCG2";
+   dcterms:identifier "4895909e-228d-4f75-bd19-f53cff102c53";
+   rdfs:seeAlso ncbi_gene:9429;
+   skos:altLabel "ATP BINDING CASSETTE SUBFAMILY G MEMBER 2 (JUNIOR BLOOD GROUP)" .

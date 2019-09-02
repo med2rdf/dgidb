@@ -1,0 +1,12 @@
+@base <http://identifiers.org/dgidb/drug/> .
+@prefix chembl_molecule: <http://rdf.ebi.ac.uk/resource/chembl/molecule/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dgio: <http://purl.jp/bio/10/dgidb/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<8ba3518a-9f54-47f5-90b4-e44531b33f3d> a dgio:Drug;
+   rdfs:label "MITOXANTRONE";
+   dcterms:identifier "8ba3518a-9f54-47f5-90b4-e44531b33f3d";
+   rdfs:seeAlso chembl_molecule:CHEMBL58 .

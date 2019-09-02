@@ -1,0 +1,15 @@
+@base <http://identifiers.org/dgidb/interaction/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dgidb_drug: <http://identifiers.org/dgidb/drug/> .
+@prefix dgidb_gene: <http://identifiers.org/dgidb/gene/> .
+@prefix dgio: <http://purl.jp/bio/10/dgidb/> .
+@prefix pubmed: <http://identifiers.org/pubmed/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<0004f4bd-b17b-4fc6-9583-dfb546fe4357> a dgio:Interaction;
+   dgio:drug dgidb_drug:8ba3518a-9f54-47f5-90b4-e44531b33f3d;
+   dgio:gene dgidb_gene:4895909e-228d-4f75-bd19-f53cff102c53;
+   dcterms:identifier "0004f4bd-b17b-4fc6-9583-dfb546fe4357" .
+
