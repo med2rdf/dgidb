@@ -16,7 +16,7 @@ module Dgidb
           triples = []
 
           subject = ::RDF::URI.new(Constant::PREFIXES[:dgidb_gene] + self[:id])
-          triples << [subject, ::RDF.type, DGIO.Gene]
+          triples << [subject, ::RDF.type, M2R.Gene]
           triples << [subject, ::RDF::Vocab::DC.identifier, self[:id]]
           triples << [subject, ::RDF::Vocab::RDFS.label, self[:name]]
           triples << [subject, ::RDF::Vocab::SKOS.altLabel, self[:long_name]]

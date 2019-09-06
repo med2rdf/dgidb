@@ -14,7 +14,7 @@ module Dgidb
           triples = []
 
           subject = ::RDF::URI.new(Constant::PREFIXES[:dgidb_drug] + self[:id])
-          triples << [subject, ::RDF.type, DGIO.Drug]
+          triples << [subject, ::RDF.type, M2R.Drug]
           triples << [subject, ::RDF::Vocab::DC.identifier, self[:id]]
           triples << [subject, ::RDF::Vocab::RDFS.label, self[:name]]
           if (v = self[:chembl_id])

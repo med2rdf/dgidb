@@ -14,9 +14,9 @@ module Dgidb
         end
 
         def all
-          ontology
-          drug
-          gene
+ #         ontology
+ #         drug
+ #         gene
           interaction
         end
 
@@ -24,7 +24,7 @@ module Dgidb
           puts 'generating dgio.ttl...'
           file = File.join(@output_dir, 'dgio.ttl')
           File.open(file, 'w') do |f|
-            f.write Dgidb::RDF::DGIO.to_ttl
+            f.write Dgidb::RDF::M2R.to_ttl
           end
         end
 
@@ -34,11 +34,15 @@ module Dgidb
                               rdfs:       ::RDF::RDFS.to_s,
                               dcterms:    ::RDF::Vocab::DC.to_s,
                               xsd:        ::RDF::XSD.to_s,
-                              dgio:       Dgidb::RDF::DGIO.to_s,
+                              m2r:       Dgidb::RDF::M2R.to_s,
                               dgidb_drug: Dgidb::RDF::Constant::PREFIXES[:dgidb_drug],
                               dgidb_gene: Dgidb::RDF::Constant::PREFIXES[:dgidb_gene],
+                              dgidb_evidence: Dgidb::RDF::Constant::PREFIXES[:dgidb_evidence],
                               pubmed:     Dgidb::RDF::Constant::PREFIXES[:pubmed] } }
 
+          Dgidb::RDF::Models::InteractionClaimAttribute.pluck(:name).uniq.each do |name|
+            puts name
+          end
           puts 'generating interaction.ttl...'
           progress_bar do |bar|
             bar.total = Dgidb::RDF::Models::Interaction.count
@@ -50,6 +54,7 @@ module Dgidb
               end
             end
           end
+
         end
 
         def drug
@@ -58,10 +63,10 @@ module Dgidb
                               rdfs:            ::RDF::RDFS.to_s,
                               dcterms:         ::RDF::Vocab::DC.to_s,
                               xsd:             ::RDF::XSD.to_s,
-                              dgio:            Dgidb::RDF::DGIO.to_s,
+                              m2r:            Dgidb::RDF::M2R.to_s,
                               chembl_molecule: Dgidb::RDF::Constant::PREFIXES[:chembl_molecule] } }
 
-          puts 'generating drug.ttl...'
+          puts '###generating drug.ttl...'
           progress_bar do |bar|
             bar.total = Dgidb::RDF::Models::Drug.count
             file      = File.join(@output_dir, 'drug.ttl')
@@ -81,7 +86,7 @@ module Dgidb
                               dcterms:   ::RDF::Vocab::DC.to_s,
                               skos:      ::RDF::Vocab::SKOS.to_s,
                               xsd:       ::RDF::XSD.to_s,
-                              dgio:      Dgidb::RDF::DGIO.to_s,
+                              m2r:      Dgidb::RDF::M2R.to_s,
                               ncbi_gene: Dgidb::RDF::Constant::PREFIXES[:ncbi_gene] } }
 
           puts 'generating gene.ttl...'
