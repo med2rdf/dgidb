@@ -14,14 +14,13 @@ module Dgidb
         end
 
         def all
- #         ontology
- #         drug
- #         gene
+          ontology
+          drug
+          gene
           interaction
         end
 
         def ontology
-          puts 'generating dgio.ttl...'
           file = File.join(@output_dir, 'dgio.ttl')
           File.open(file, 'w') do |f|
             f.write Dgidb::RDF::M2R.to_ttl
@@ -40,10 +39,7 @@ module Dgidb
                               dgidb_evidence: Dgidb::RDF::Constant::PREFIXES[:dgidb_evidence],
                               pubmed:     Dgidb::RDF::Constant::PREFIXES[:pubmed] } }
 
-          Dgidb::RDF::Models::InteractionClaimAttribute.pluck(:name).uniq.each do |name|
-            puts name
-          end
-          puts 'generating interaction.ttl...'
+          puts '###generating interuction.ttl...'
           progress_bar do |bar|
             bar.total = Dgidb::RDF::Models::Interaction.count
             file      = File.join(@output_dir, 'interaction.ttl')
