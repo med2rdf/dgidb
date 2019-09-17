@@ -5,12 +5,13 @@ module Dgidb
 
       PREFIXES = {
         # identifiers.org
-        dgidb_interaction: 'http://identifiers.org/dgidb/interaction/',
-        dgidb_drug:        'http://identifiers.org/dgidb/drug/',
-        dgidb_gene:        'http://identifiers.org/dgidb/gene/',
+        dgidb_interaction: 'http://www.dgidb.org/interactions/',
+        dgidb_drug:        'http://www.dgidb.org/drugs/',
+        dgidb_gene:        'http://www.dgidb.org/genes/',
+        dgidb_disease:     'http://identifiers.org/dgidb/disease/',
         dgidb_evidence:    'http://identifiers.org/dgidb/evidence/',
         ncbi_gene:         'http://identifiers.org/ncbigene/',
-        pubmed:            'http://identifiers.org/pubmed/',
+        pubmed:            'https://www.ncbi.nlm.nih.gov/pubmed/',
         dgio:              'http://purl.jp/bio/10/dgidb/ontology#',
         dct:               'http://purl.org/dc/terms/',
 

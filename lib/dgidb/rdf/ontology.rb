@@ -26,6 +26,10 @@ module Dgidb
            type:       ::RDF::OWL.Class,
            label:      'Gene'.freeze
 
+      term :Disease,
+           type:       ::RDF::OWL.Class,
+           label:      'Disease'.freeze
+           
       term :Interaction,
            type:       ::RDF::OWL.Class,
            label:      'Interaction'.freeze
@@ -47,18 +51,29 @@ module Dgidb
                domain: M2R.Interaction,
                range:  M2R.Gene
 
-      property :interactionType,
+      property :interaction_type,
                type:   ::RDF::OWL.DatatypeProperty,
                label:  'interaction type'.freeze,
                domain: M2R.Interaction,
                range:  ::RDF::XSD.string
 
+      property :interaction_mechanism,
+               type:   ::RDF::OWL.DatatypeProperty,
+               label:  'interaction mechanism'.freeze,
+               domain: M2R.Interaction,
+               range:  ::RDF::XSD.string
+
       property :evidence,
                type:   ::RDF::OWL.DatatypeProperty,
-               label:  'interaction type'.freeze,
+               label:  'evidence'.freeze,
                domain: M2R.Interaction,
                range:  M2R.Evidence
 
+      property :disease,
+               type:   ::RDF::OWL.DatatypeProperty,
+               label:  'disease'.freeze,
+               range:  M2R.Disease
+               
       property :site_primary,
                type:   ::RDF::OWL.DatatypeProperty,
                label:  'primary site'.freeze,
@@ -80,6 +95,11 @@ module Dgidb
                domain: M2R.Evidence,
                range:  ::RDF::XSD.string
 
+      property :drug_type,
+               type:   ::RDF::OWL.DatatypeProperty,
+               label:  'drug_type'.freeze,
+               domain: M2R.Evidence,
+               range:  ::RDF::XSD.string
     end
   end
 end
